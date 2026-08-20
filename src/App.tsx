@@ -16,8 +16,16 @@ type Portfolio = {
   skills: string[];
   experience: { period: string; role: string; company: string; description: string }[];
   projects: {
-    id: number; title: string; category: string; description: string;
-    contributions: string[]; technologies: string[];
+    id: number;
+    title: string;
+    category: string;
+    description: string;
+    contributions: string[];
+    technologies: string[];
+    links?: {
+      googlePlay?: string;
+      appStore?: string;
+    };
   }[];
 };
 
