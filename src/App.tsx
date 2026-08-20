@@ -175,14 +175,62 @@ export default function App() {
           <div className="label">04 / PROJECTS</div>
           <h2>Selected <span>work.</span></h2>
           <div className="projects">
-            {data.projects.map(project => (
-              <article key={project.id}>
-                <small>{String(project.id).padStart(2, "0")} • {project.category}</small>
+            {data.projects.map((project) => (
+              <article key={project.id} className="project-card">
+                <small>
+                  {String(project.id).padStart(2, "0")} • {project.category}
+                </small>
+
                 <h3>{project.title}</h3>
+
                 <p>{project.description}</p>
-                <ul>{project.contributions.map(x => <li key={x}>{x}</li>)}</ul>
-                <div className="tags">{project.technologies.map(t => <span key={t}>{t}</span>)}</div>
-                <ArrowUpRight className="arrow" />
+
+                <ul>
+                  {project.contributions.map((x) => (
+                    <li key={x}>{x}</li>
+                  ))}
+                </ul>
+
+                <div className="tags">
+                  {project.technologies.map((t) => (
+                    <span key={t}>{t}</span>
+                  ))}
+                </div>
+
+                {project.links && (
+                  <div
+                    className="project-links"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    {project.links.googlePlay && (
+                      <a
+                        href={project.links.googlePlay}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
+                      >
+                        Google Play
+                        <ArrowUpRight size={16} />
+                      </a>
+                    )}
+
+                    {project.links.appStore && (
+                      <a
+                        href={project.links.appStore}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                        }}
+                      >
+                        App Store
+                        <ArrowUpRight size={16} />
+                      </a>
+                    )}
+                  </div>
+                )}
               </article>
             ))}
           </div>
