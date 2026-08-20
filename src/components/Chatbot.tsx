@@ -1,4 +1,5 @@
-import { FormEvent, useState } from "react";
+import { useState } from "react";
+import type { FormEvent } from "react";
 import { Bot, Send, X } from "lucide-react";
 import { sendChat } from "../api/portfolioApi";
 
