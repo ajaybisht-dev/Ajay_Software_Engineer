@@ -37,11 +37,11 @@ export default function App() {
   const downloadResume = async () => {
     try {
       const response = await fetch(
-        "http://localhost:8000/api/resume"
+        `${import.meta.env.VITE_API_URL}/resume`
       );
 
       if (!response.ok) {
-        throw new Error("Failed to download resume");
+        throw new Error(`Resume API failed: ${response.status}`);
       }
 
       const blob = await response.blob();
@@ -49,6 +49,7 @@ export default function App() {
       const url = window.URL.createObjectURL(blob);
 
       const link = document.createElement("a");
+
       link.href = url;
       link.download = "Ajay-Bisht-Resume.pdf";
 
@@ -56,9 +57,10 @@ export default function App() {
       link.click();
 
       document.body.removeChild(link);
+
       window.URL.revokeObjectURL(url);
     } catch (error) {
-      console.error("Resume download failed:", error);
+      console.error("Resume download error:", error);
       alert("Unable to download resume");
     }
   };
